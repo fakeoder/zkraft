@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="zkraft.cc" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="canonical" href="https://zkraft.cc/en/" />
+    <link rel="alternate" hreflang="en" href="https://zkraft.cc/en/" />
+    <link rel="alternate" hreflang="zh" href="https://zkraft.cc/zh/" />
+    <link rel="alternate" hreflang="x-default" href="https://zkraft.cc/" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0a" />
+    <script>
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('zkraft-theme')
+          var theme = stored
+          if (!theme) {
+            var m = document.cookie.match(/(?:^|;\s*)zkraft_theme=([^;]+)/)
+            theme = m
+              ? m[1]
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+          }
+          if (theme === 'dark' || theme === 'light') {
+            document.documentElement.dataset.theme = theme
+          }
+        } catch (e) {
+          /* ignore */
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/client/main.ts"></script>
+  </body>
+</html>

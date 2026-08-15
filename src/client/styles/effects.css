@@ -1,0 +1,85 @@
+/* UI atoms (button) and entrance motion — pure CSS, no JS.
+   Reduced-motion is handled in base.css. No decorative background layers:
+   the minimal style keeps a flat near-white (or near-black) canvas. */
+
+/* --------------------------------------------------------------------- Buttons */
+
+/* Ghost button — the single "Explore Products" CTA; arrow nudges right on hover. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--transition) var(--ease-out),
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn svg {
+  flex: none;
+  transition: transform var(--transition) var(--ease-out);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ---------------------------------------------------------- Entrance motion
+   Page loads as one calm scene: hero children and sections rise in with a
+   gentle stagger. Each animation is ≤ 300ms; delays only offset the start. */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero > .container > * {
+    animation: rise-in 0.3s var(--ease-out) both;
+  }
+
+  .hero > .container > *:nth-child(2) {
+    animation-delay: 0.05s;
+  }
+
+  .hero > .container > *:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+
+  .hero > .container > *:nth-child(4) {
+    animation-delay: 0.15s;
+  }
+
+  .section,
+  .site-footer {
+    animation: rise-in 0.3s var(--ease-out) both;
+  }
+}

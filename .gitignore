@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dev-dist/
+.wrangler/
+.reasonix/
+worker-configuration.d.ts
+*.tsbuildinfo
+*.local
+.DS_Store

@@ -1,0 +1,19 @@
+name = "zkraft-landing"
+main = "src/server/index.ts"
+compatibility_date = "2025-08-01"
+
+# Built frontend (Vite output) served through the Worker via the ASSETS binding.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+# Cloudflare D1 — structured data (products, site config, visitor messages).
+# Before deploying: `wrangler d1 create zkraft` and replace database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "zkraft"
+database_id = "8af0a86e-6a55-4e71-ab9e-4e53135a7510"
+migrations_dir = "src/db/migrations"
+
+[observability]
+enabled = true

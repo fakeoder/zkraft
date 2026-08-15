@@ -1,0 +1,413 @@
+/* Page layout — mobile-first, single focused column (max 720px), left-aligned. */
+
+/* Global container: every section's content sits in this centered gutter. */
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+
+/* ------------------------------------------------------------------ Header */
+
+/* Sticky, frosted-glass header. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--header-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  min-height: 60px;
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.brand-tld {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Language switcher — click-triggered dropdown (no hover). */
+.lang-switcher {
+  position: relative;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.lang-btn:hover,
+.lang-btn[aria-expanded='true'] {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.lang-caret {
+  transition: transform var(--transition);
+}
+
+.lang-btn[aria-expanded='true'] .lang-caret {
+  transform: rotate(180deg);
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  min-width: 160px;
+  margin: 0;
+  padding: var(--space-2);
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hover);
+}
+
+.lang-menu[hidden] {
+  display: none;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.lang-option:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.lang-option[aria-selected='true'] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Theme toggle (icon button) + shared icon-button rules. */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.icon-btn svg {
+  display: block;
+}
+
+.icon-moon {
+  display: none;
+}
+
+[data-theme='dark'] .icon-sun {
+  display: none;
+}
+
+[data-theme='dark'] .icon-moon {
+  display: block;
+}
+
+/* -------------------------------------------------------------------- Hero */
+
+.hero {
+  padding-block: clamp(5rem, 12vh, 8rem);
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-5);
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+/* Green "In progress" pulse dot, reused by the About "Currently" line. */
+.status-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--status);
+  box-shadow: 0 0 0 3px var(--status-soft);
+}
+
+.hero-title {
+  max-width: 22ch;
+}
+
+.hero-intro {
+  max-width: 560px;
+  margin-top: var(--space-5);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.hero-actions {
+  margin-top: var(--space-6);
+}
+
+/* ------------------------------------------------------------ Content sections */
+
+/* Generous, even spacing between sections. */
+.section {
+  padding-block: var(--space-8);
+  /* Anchor links (#products, #about) land below the sticky header. */
+  scroll-margin-top: 72px;
+}
+
+.section-title {
+  margin-bottom: var(--space-5);
+}
+
+/* -------------------------------------------------------------------- About */
+
+.about {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
+  max-width: 640px;
+}
+
+/* Circular initials mark — no image asset. */
+.about-avatar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.about-body {
+  min-width: 0;
+}
+
+.about-text {
+  margin: 0;
+  line-height: var(--line-height-body);
+  color: var(--text);
+}
+
+.about-text + .about-text {
+  margin-top: 1.5em;
+}
+
+.about-currently {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--space-5);
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------- Products */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Product card — flat: 1px border, no shadow; lifts subtly on hover. */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text);
+  transition:
+    transform var(--transition) var(--ease-out),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+a.product-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.product-tagline {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-small);
+  line-height: 1.6;
+}
+
+.product-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.6;
+}
+
+/* Small rounded status tag (In progress / Live / …). */
+.product-status {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Empty state — dashed "coming soon" card that spans every column. */
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--space-5);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+}
+
+.empty-title {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.empty-body {
+  max-width: 44ch;
+  color: var(--text-secondary);
+}
+
+.empty-link {
+  margin-top: var(--space-1);
+}
+
+/* ----------------------------------------------------------------- Footer */
+
+.site-footer {
+  margin-top: var(--space-8);
+  padding-block: var(--space-7);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .footer-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-right {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.footer-right a {
+  color: var(--text-secondary);
+  font-size: inherit;
+}
+
+.footer-right a:hover {
+  color: var(--accent);
+}
