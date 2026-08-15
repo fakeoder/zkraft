@@ -7,7 +7,7 @@ import { el } from '../app/dom'
  * e.g. an X/Twitter link: { href: 'https://x.com/YOUR_HANDLE', key: 'footer.twitter' }.
  */
 const SOCIAL_LINKS: Array<{ href: string; key: 'footer.github' }> = [
-  { href: 'https://github.com/znknl', key: 'footer.github' },
+  { href: 'https://github.com/fakeoder/zkraft', key: 'footer.github' },
 ]
 
 export function renderFooter(locale: Locale): HTMLElement {

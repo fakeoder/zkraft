@@ -90,7 +90,7 @@ function renderEmptyState(locale: Locale): HTMLElement {
       'a',
       {
         class: 'empty-link link-underline',
-        href: 'https://github.com/znknl/landing',
+        href: 'https://github.com/fakeoder/zkraft',
         rel: 'noopener noreferrer',
       },
       t(locale, 'products.emptyLink'),
