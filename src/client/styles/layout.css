@@ -260,15 +260,6 @@
   margin-top: 1.5em;
 }
 
-.about-currently {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: var(--space-5);
-  font-size: var(--font-size-small);
-  color: var(--text-secondary);
-}
-
 /* --------------------------------------------------------------- Products */
 
 .product-grid {

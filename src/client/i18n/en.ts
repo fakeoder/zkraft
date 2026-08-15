@@ -25,9 +25,6 @@ export const en = {
     heading: 'About',
     siteBody:
       'zkraft.cc is where I publish the small products I build on my own. The goal is straightforward: to create things that solve real problems for some people, and to make a difference, however small.',
-    meBody:
-      'An ordinary coder — admittedly a little lazy and a little slow, but determined to build **something different**. Still working on it, one step at a time.',
-    currently: 'Currently building small tools with Cloudflare Workers + D1.',
   },
   footer: {
     github: 'GitHub',

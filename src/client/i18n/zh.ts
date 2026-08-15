@@ -26,8 +26,6 @@ export const zh: Dict = {
     heading: '关于',
     siteBody:
       'zkraft.cc 是我发布自己独立制作的小产品的地方。目标很简单：做出能解决一些人真实问题的东西，哪怕只是小小的改变。',
-    meBody: '一个普通的程序员——确实有点懒、有点慢，但下定决心要做出点**不一样的东西**。还在努力，一步一步来。',
-    currently: '目前在用 Cloudflare Workers + D1 做小工具。',
   },
   footer: {
     github: 'GitHub',

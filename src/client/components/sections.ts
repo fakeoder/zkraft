@@ -12,19 +12,6 @@ const STATUS_LABEL_KEYS: Record<string, string> = {
   archived: 'products.status.archived',
 }
 
-/**
- * Render a string containing `**bold**` markers as text + <strong> nodes.
- * Used for the "something different" emphasis in the About copy.
- */
-function rich(text: string): Array<Node> {
-  const nodes: Array<Node> = []
-  text.split('**').forEach((part, i) => {
-    if (part === '') return
-    nodes.push(i % 2 === 1 ? el('strong', {}, part) : document.createTextNode(part))
-  })
-  return nodes
-}
-
 function renderHero(locale: Locale): HTMLElement {
   return el(
     'section',
@@ -154,13 +141,6 @@ function renderAbout(locale: Locale): HTMLElement {
           'div',
           { class: 'about-body' },
           el('p', { class: 'about-text' }, t(locale, 'about.siteBody')),
-          el('p', { class: 'about-text' }, ...rich(t(locale, 'about.meBody'))),
-          el(
-            'div',
-            { class: 'about-currently' },
-            el('span', { class: 'status-dot', 'aria-hidden': 'true' }),
-            el('span', {}, t(locale, 'about.currently')),
-          ),
         ),
       ),
     ),
