@@ -12,7 +12,7 @@ An ordinary coder — admittedly a little lazy and a little slow, but determined
 
 ## Products
 
-The section reads live from the D1 database via the API. A placeholder card is seeded for now to prove the pipeline — real products will replace it.
+The section renders from client-side product data — every product lives in `src/client/products/` (`en.ts` / `zh.ts` for each language). No server round-trip; edit those files to add or change products.
 
 ## Tech Stack (V1)
 
@@ -29,7 +29,7 @@ Selected for simplicity, performance, and minimal operational overhead:
 - **Theming** — light/dark following `prefers-color-scheme`, manual toggle, no flash on load
 - **PWA** — manifest, generated icons, Workbox service worker with an offline shell
 - **Responsive & accessible** — mobile-first, semantic HTML, keyboard navigation, `prefers-reduced-motion`
-- **API** — `/api/config`, `/api/products`, `POST /api/messages` (validated + rate-limited)
+- **API** — `POST /api/messages` (validated + rate-limited)
 
 ## Project Structure
 
@@ -39,6 +39,7 @@ src/
 │   ├── app/         # page assembly, theme, SW registration, DOM helpers
 │   ├── components/  # header, sections, footer
 │   ├── i18n/        # EN/ZH dictionaries in `en.ts` and `zh.ts`
+│   ├── products/    # EN/ZH product data in `en.ts` and `zh.ts`
 │   └── styles/      # design tokens, base, layout
 ├── server/          # Hono worker (routes, API, middleware)
 └── db/              # D1 schema + migrations

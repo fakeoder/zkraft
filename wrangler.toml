@@ -7,7 +7,8 @@ compatibility_date = "2025-08-01"
 directory = "./dist"
 binding = "ASSETS"
 
-# Cloudflare D1 — structured data (products, site config, visitor messages).
+# Cloudflare D1 — structured data (site config, visitor messages).
+# Product info ships with the client bundle (src/client/products), not D1.
 # Before deploying: `wrangler d1 create zkraft` and replace database_id below.
 [[d1_databases]]
 binding = "DB"

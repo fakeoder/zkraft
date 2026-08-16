@@ -1,11 +1,13 @@
 import type { Locale } from '../i18n'
 import { t } from '../i18n'
+import type { Product } from '../products'
+import { productList } from '../products'
 import { el, svg } from '../app/dom'
 
 /** Right arrow for the "Explore Products" CTA (nudges right on hover). */
 const ARROW_RIGHT_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>`
 
-/** Map D1 `products.status` to a localized i18n key. */
+/** Map a product status to a localized i18n key. */
 const STATUS_LABEL_KEYS: Record<string, string> = {
   draft: 'products.status.draft',
   active: 'products.status.active',
@@ -41,24 +43,15 @@ function renderHero(locale: Locale): HTMLElement {
   )
 }
 
-/** Product shape as returned by GET /api/products (D1 `products` table). */
-type Product = {
-  id: number
-  slug: string
-  name: string
-  tagline: string | null
-  description: string | null
-  status: string
-  url: string | null
-  sort_order: number
-}
-
+/** Product shape as shipped in the client bundle (src/client/products). */
 function renderProducts(locale: Locale): HTMLElement {
   const grid = el('div', { class: 'product-grid' })
-  grid.append(renderEmptyState(locale))
-  // Fill the grid from the API when products exist; the empty state stays
-  // until then so the section never flashes empty.
-  void loadProducts(grid, locale)
+  const list = productList[locale]
+  grid.append(
+    ...(list.length > 0
+      ? list.map((p) => renderProductCard(locale, p))
+      : [renderEmptyState(locale)]),
+  )
   return el(
     'section',
     { class: 'section', id: 'products' },
@@ -83,22 +76,6 @@ function renderEmptyState(locale: Locale): HTMLElement {
       t(locale, 'products.emptyLink'),
     ),
   )
-}
-
-/**
- * Fetch active products from the worker API and swap the empty state for a
- * card grid. Any failure (offline, API down, no data) keeps the empty state.
- */
-async function loadProducts(grid: HTMLElement, locale: Locale): Promise<void> {
-  try {
-    const res = await fetch('/api/products', { headers: { accept: 'application/json' } })
-    if (!res.ok) return
-    const data = (await res.json()) as { products: Product[] }
-    if (!data.products?.length) return
-    grid.replaceChildren(...data.products.map((p) => renderProductCard(locale, p)))
-  } catch {
-    /* network error etc. — the empty state remains */
-  }
 }
 
 /** One product card; the whole card is a link when a url exists. */

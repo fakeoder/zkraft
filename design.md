@@ -13,7 +13,7 @@ The landing page introduces the site, the person behind it, and the products. It
 | Frontend build | **Vite** | Dev server, bundling, code splitting, asset optimization |
 | Framework / API | **Hono** | Lightweight routing, middleware, API endpoints on the edge |
 | Runtime | **Cloudflare Workers** | Global edge runtime; serves the frontend and API with zero server management |
-| Database | **Cloudflare D1** | Serverless SQLite — product info, site config, visitor messages |
+| Database | **Cloudflare D1** | Serverless SQLite — site config, visitor messages (product info ships with the client) |
 | Storage | — | No blob storage in V1; images are limited to small static assets served with the frontend |
 
 ### 2.1 Architecture
@@ -27,11 +27,11 @@ Cloudflare Workers (Hono)
    │  ├── /api/* routes (JSON)
    │  └── i18n negotiation, security headers
    │
-   └── Cloudflare D1 (structured data: products, config, messages)
+   └── Cloudflare D1 (structured data: config, messages; products are client-side)
 ```
 
 - **Frontend**: built by Vite, deployed as static assets served through the Worker (Hono static middleware).
-- **Backend**: Hono app on Workers exposing a minimal JSON API (`/api/config`, `/api/products`, `/api/messages`).
+- **Backend**: Hono app on Workers exposing a minimal JSON API (`POST /api/messages`).
 - **Data**: D1 stores structured content, accessed via Worker bindings.
 
 ### 2.2 Directory Layout
@@ -72,7 +72,7 @@ Every decision should honor these traits, in priority order:
 |---|---|
 | Header | Site name `zkraft.cc`, language switcher, theme toggle |
 | Hero | Status badge, one-line positioning + short intro, "Explore Products" CTA (scrolls to products) |
-| Products | Cards rendered from the D1 API; a graceful "coming soon" empty state when there are none |
+| Products | Cards rendered from client-side product data (`src/client/products/en.ts` / `zh.ts`); a graceful "coming soon" empty state when there are none |
 | About | Site intro + personal intro in one card, plus a "Currently" status line |
 | Footer | GitHub link, copyright |
 
@@ -124,10 +124,9 @@ Every decision should honor these traits, in priority order:
 
 ## 10. API & Data (V1)
 
-- `GET /api/config?locale=en|zh` — site content per locale from D1 (`site_config`); falls back to an empty config (the client ships its own locale bundles).
-- `GET /api/products` — active products from D1, ordered; the client keeps the "coming soon" empty state when there are none (V1 seeds a placeholder product to prove the pipeline).
 - `POST /api/messages` — optional visitor message: validated (name required, message ≥ 5 chars, optional email format) and rate-limited (10/min per IP via the Cache API).
-- D1 schema (initial): `products`, `site_config`, `messages`.
+- Products: no longer an API endpoint — product info ships with the client bundle in `src/client/products/en.ts` / `zh.ts` and renders directly (an empty list shows the "coming soon" empty state).
+- D1 schema (current): `messages` only — site content ships with the client, and product data lives in `src/client/products`.
 
 ## 11. Development & Deployment
 
@@ -148,5 +147,5 @@ Every decision should honor these traits, in priority order:
 - **M1 — Foundation** ✅: Vite + Hono scaffold, build & deploy pipeline, design tokens, responsive shell, EN content.
 - **M2 — Theming & i18n** ✅: light/dark, ZH locale, language switcher.
 - **M3 — PWA** ✅: manifest, service worker, offline shell.
-- **M4 — Data** ✅: D1 schema + API; the products section renders from D1.
+- **M4 — Data** ✅: D1 schema + API (`messages`). Products were later moved client-side (`src/client/products`) and the D1 `products` table dropped.
 - **M5 — Polish** 🚧: performance, accessibility audit, content review.
