@@ -2,6 +2,7 @@
   "name": "zkraft-landing",
   "private": true,
   "version": "0.1.0",
+  "license": "MIT",
   "type": "module",
   "description": "Landing page for zkraft.cc — Vite + Hono on Cloudflare Workers",
   "scripts": {
