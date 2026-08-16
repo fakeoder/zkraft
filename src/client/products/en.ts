@@ -7,10 +7,19 @@ import type { Product } from './types'
 export const enProducts: Product[] = [
   {
     slug: 'landing',
-    name: 'First product — Landing Page',
-    tagline: 'The first small thing, current site.',
+    name: 'zkraft',
+    tagline: 'Current site.',
     description: 'zkraft.cc is where small tools live.',
     status: 'active',
     url: 'https://zkraft.cc/',
+  },
+  {
+    slug: 'chengyu-wisdom',
+    name: 'Chengyu Wisdom',
+    tagline: 'Wisdom in four characters.',
+    description:
+      'Classic Chinese idioms as a gateway to traditional Chinese philosophy, mindset and values.',
+    status: 'active',
+    url: 'https://chengyu-wisdom.zkraft.cc/',
   },
 ]

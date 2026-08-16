@@ -81,8 +81,25 @@ function renderEmptyState(locale: Locale): HTMLElement {
 /** One product card; the whole card is a link when a url exists. */
 function renderProductCard(locale: Locale, product: Product): HTMLElement {
   const statusKey = STATUS_LABEL_KEYS[product.status] ?? STATUS_LABEL_KEYS.draft
+  // Favicon of the product's own site as the card logo. SVG is vector —
+  // stays crisp at any size (fall back to .ico if a site ships no svg).
+  const favicon = product.url ? `${new URL(product.url).origin}/favicon.svg` : ''
   const children: Array<Node | null> = [
-    el('h3', { class: 'product-name' }, product.name),
+    el(
+      'div',
+      { class: 'product-card-head' },
+      favicon
+        ? el('img', {
+            class: 'product-logo',
+            src: favicon,
+            alt: '',
+            width: '32',
+            height: '32',
+            loading: 'lazy',
+          })
+        : null,
+      el('h3', { class: 'product-name' }, product.name),
+    ),
     product.tagline ? el('p', { class: 'product-tagline' }, product.tagline) : null,
     product.description ? el('p', { class: 'product-desc' }, product.description) : null,
     el('span', { class: 'product-status' }, t(locale, statusKey)),

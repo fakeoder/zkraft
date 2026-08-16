@@ -297,11 +297,36 @@ a.product-card:hover {
   box-shadow: var(--shadow-hover);
 }
 
+/* Logo (site favicon) + name on one row. */
+.product-card-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.product-logo {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted); /* visible fallback while loading / if missing */
+  object-fit: contain;
+}
+
+.product-card-head .product-name {
+  flex: 1;
+  min-width: 0;
+}
+
 .product-name {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-tagline {
@@ -309,6 +334,9 @@ a.product-card:hover {
   color: var(--text-secondary);
   font-size: var(--font-size-small);
   line-height: 1.6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-desc {
@@ -316,12 +344,17 @@ a.product-card:hover {
   color: var(--text-muted);
   font-size: var(--font-size-small);
   line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* Small rounded status tag (In progress / Live / …). */
+/* Small rounded status tag (In progress / Live / …). Pinned to the card
+   bottom so statuses line up across cards of different description lengths. */
 .product-status {
   align-self: flex-start;
-  margin-top: var(--space-2);
+  margin-top: auto;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-pill);
   background: var(--surface-muted);
