@@ -22,4 +22,13 @@ export const enProducts: Product[] = [
     status: 'active',
     url: 'https://chengyu-wisdom.zkraft.cc/',
   },
+  {
+    slug: 'inpaint',
+    name: 'Inpaint',
+    tagline: 'Erase objects, restore the picture.',
+    description:
+      'Remove objects, people, or watermarks from an image and let AI fill the background naturally.',
+    status: 'active',
+    url: 'https://inpaint.zkraft.cc/',
+  },
 ]
