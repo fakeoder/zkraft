@@ -95,7 +95,6 @@ function renderProductCard(locale: Locale, product: Product): HTMLElement {
             alt: '',
             width: '32',
             height: '32',
-            loading: 'lazy',
           })
         : null,
       el('h3', { class: 'product-name' }, product.name),

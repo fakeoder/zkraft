@@ -29,6 +29,7 @@ export const zh: Dict = {
   },
   footer: {
     github: 'GitHub',
+    contact: '联系我',
     copyright: '© 2025 zkraft.cc',
   },
 }

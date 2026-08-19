@@ -28,6 +28,7 @@ export const en = {
   },
   footer: {
     github: 'GitHub',
+    contact: 'Contact',
     copyright: '© 2025 zkraft.cc',
   },
 }

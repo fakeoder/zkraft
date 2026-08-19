@@ -6,8 +6,9 @@ import { el } from '../app/dom'
  * Social / contact links. Add more entries here as handles become available,
  * e.g. an X/Twitter link: { href: 'https://x.com/YOUR_HANDLE', key: 'footer.twitter' }.
  */
-const SOCIAL_LINKS: Array<{ href: string; key: 'footer.github' }> = [
+const SOCIAL_LINKS: Array<{ href: string; key: 'footer.github' | 'footer.contact' }> = [
   { href: 'https://github.com/fakeoder/zkraft', key: 'footer.github' },
+  { href: 'mailto:contact@zkraft.cc', key: 'footer.contact' },
 ]
 
 export function renderFooter(locale: Locale): HTMLElement {
