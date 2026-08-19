@@ -18,4 +18,12 @@ export const zhProducts: Product[] = [
     status: 'active',
     url: 'https://chengyu-wisdom.zkraft.cc/',
   },
+  {
+    slug: 'inpaint',
+    name: 'Inpaint',
+    tagline: '一键抹除，自然修复。',
+    description: '上传图片，移除物体、人物或水印，AI 自动填充背景。',
+    status: 'active',
+    url: 'https://inpaint.zkraft.cc/',
+  },
 ]
