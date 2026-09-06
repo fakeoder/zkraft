@@ -26,4 +26,12 @@ export const zhProducts: Product[] = [
     status: 'active',
     url: 'https://inpaint.zkraft.cc/',
   },
+  {
+    slug: 'zenshare',
+    name: 'ZenShare',
+    tagline: '轻松分享，自在传递。',
+    description: '网页端分享工具，让内容传递更简单。',
+    status: 'active',
+    url: 'https://zenshare.zkraft.cc/',
+  },
 ]

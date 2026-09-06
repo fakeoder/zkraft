@@ -31,4 +31,12 @@ export const enProducts: Product[] = [
     status: 'active',
     url: 'https://inpaint.zkraft.cc/',
   },
+  {
+    slug: 'zenshare',
+    name: 'ZenShare',
+    tagline: 'Share simply, share freely.',
+    description: 'A web-based sharing tool that makes it easy to pass content along.',
+    status: 'active',
+    url: 'https://zenshare.zkraft.cc/',
+  },
 ]
