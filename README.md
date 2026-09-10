@@ -14,7 +14,7 @@ An ordinary coder — admittedly a little lazy and a little slow, but determined
 
 The section renders from client-side product data — every product lives in `src/client/products/` (`en.ts` / `zh.ts` for each language). No server round-trip; edit those files to add or change products.
 
-## Tech Stack (V1)
+## Tech Stack
 
 Selected for simplicity, performance, and minimal operational overhead:
 
