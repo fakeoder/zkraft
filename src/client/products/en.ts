@@ -6,14 +6,6 @@ import type { Product } from './types'
  */
 export const enProducts: Product[] = [
   {
-    slug: 'landing',
-    name: 'zkraft',
-    tagline: 'Current site.',
-    description: 'zkraft.cc is where small tools live.',
-    status: 'active',
-    url: 'https://zkraft.cc/',
-  },
-  {
     slug: 'chengyu-wisdom',
     name: 'Chengyu Wisdom',
     tagline: 'Wisdom in four characters.',
