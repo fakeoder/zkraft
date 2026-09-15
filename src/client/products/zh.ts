@@ -26,4 +26,12 @@ export const zhProducts: Product[] = [
     status: 'active',
     url: 'https://zenshare.zkraft.cc/',
   },
+  {
+    slug: 'ztools',
+    name: '在线小工具集',
+    tagline: '随手可用的小工具集。',
+    description: '一系列简单实用的在线工具，打开即用。',
+    status: 'active',
+    url: 'https://ztools.zkraft.cc/',
+  },
 ]

@@ -31,4 +31,13 @@ export const enProducts: Product[] = [
     status: 'active',
     url: 'https://zenshare.zkraft.cc/',
   },
+  {
+    slug: 'ztools',
+    name: 'Z Tools',
+    tagline: 'Handy tools, ready to use.',
+    description:
+      'A collection of simple, practical online tools you can use right away.',
+    status: 'active',
+    url: 'https://ztools.zkraft.cc/',
+  },
 ]
